@@ -42,7 +42,7 @@ function displayPetCards(){
     for(let i=0; i<salon.pets.length; i++){
         let pet = salon.pets[i];
         card +=`
-        <div class="petCards">
+        <div id="${pet.id}" class="petCards">
             <div class="x-delete"><button class="x-delete" onclick="deletePet(${i})">❌</button></div>
             <p><span class="inf-card">Name:</span> ${pet.name}</p>
             <p><span class="inf-card">Age:</span> ${pet.age}</p>

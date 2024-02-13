@@ -8,7 +8,7 @@ let salon={
     },
     pets:[] // pet arry
 }
-
+let petID=0;
 // constructor
 function Pet(name, age, gender, breed, service, type, payment, description){
     this.name = name;
@@ -19,6 +19,7 @@ function Pet(name, age, gender, breed, service, type, payment, description){
     this.type = type;
     this.payment = payment;
     this.description = description;
+    this.id=petID++;
 }
 
 // replace
@@ -36,20 +37,6 @@ let inputType = getE("txtType");
 let inputPayment = getE("selectPayment");
 let inputDescription = getE("txtDescription");
 
-// function isValid(aPet){
-//     let validation=true;
-
-//     //clear the style
-//     //document.querySelectorAll("input"); use a loop
-//     getE("txtName").classList.remove("alert-error");
-//     getE("numAge").classList.remove("alert-error");
-
-//     if(aPet.name==""){
-//         validation=false;
-//         getE("txtName").classList.add("alert-error");
-//     }
-//     return validation;
-// }
 
 function isValid(aPet){
     let validation=true;
@@ -127,34 +114,6 @@ function register(){
     }else{
         showNotifications("Please fill out all the required fields", "alert-error");
     }
-
-    // let newPet = new Pet(inputName.value, inputAge.value, inputGender.value, inputBreed.value, inputService.value);
-    // if(isValid(newPet)==true){
-        
-    //     inputPayment.classList.remove("hidden");
-    //     inputDescription.classList.remove("hidden");
-    //     inputPayment.classList.add("form-select");
-    //     inputDescription.classList.add("form-control");
-
-        
-
-    //     salon.pets.push(newPet);
-    
-    //     petsCount();
-    //     displayPetCards();
-    //     displayPetTable();
-    
-    //     inputName.value = "";
-    //     inputAge.value = "";
-    //     inputGender.value = "";
-    //     inputBreed.value = "";    
-    //     inputService.value = "";
-
-    //     showNotifications("Successful registion", "alert-successful");
-
-    // }else{
-    //     showNotifications("Please fill out all the required fields", "alert-error");
-    // }
 }
 
 function addInfo(){
