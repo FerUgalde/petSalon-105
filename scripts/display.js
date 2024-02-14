@@ -43,7 +43,7 @@ function displayPetCards(){
         let pet = salon.pets[i];
         card +=`
         <div id="${pet.id}" class="petCards">
-            <div class="x-delete"><button class="x-delete" onclick="deletePet(${i})">❌</button></div>
+            <div class="x-delete"><button class="x-delete" onclick="deletePet(${pet.id})">❌</button></div>
             <p><span class="inf-card">Name:</span> ${pet.name}</p>
             <p><span class="inf-card">Age:</span> ${pet.age}</p>
             <p><span class="inf-card">Gender:</span> ${pet.gender}</p>
@@ -81,7 +81,7 @@ function displayPetTable(order){
             <td>${pet.service}</td>
             <td>${pet.type}</td>
             <td>${pet.payment}</td>
-            <td><button class="x-delete" onclick="deletePet(${j})">❌</button></td>
+            <td><button class="x-delete" onclick="deletePet(${pet.id})">❌</button></td>
         </tr>
         `;
     }

@@ -133,10 +133,18 @@ function addInfo(){
     getE("btn-add").classList.add("hidden");
 }
 
-function deletePet(id){
-    salon.pets.splice(id, 1);
+function deletePet(petID){
+    let deleteIndex;
+    for(let i=0;i<salon.pets.length;i++){
+        let pet = salon.pets[i];
+        if(pet.id == petID){
+            deleteIndex = i;
+            break;
+        }
+    }
+    getE(petID).remove();
+    salon.pets.splice(deleteIndex, 1);
     petsCount();
-    displayPetCards();
     displayPetTable();
 }
 
