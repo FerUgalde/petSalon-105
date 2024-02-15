@@ -5,36 +5,6 @@ function petsCount(){
     `;
 }
 
-// // display pet names
-// function petsBreeds(){
-//     // document.getElementById("breeds").innerHTML = "";
-//     let breedList = [];
-//     for (let i=0; i<salon.pets.length; i++){
-//         breedList += `<li>${salon.pets[i].breed}</li>`;
-//     }
-//     getE("breeds").innerHTML =`
-//     <p>The breeds are:</p>
-//     <ul>
-//     ${breedList}
-//     </ul>
-//     `;
-// }
-
-// // display pet names
-// function petsNames(){
-//     // document.getElementById("names").innerHTML = "";
-//     let nameList = [];
-//     for (let i=0; i<salon.pets.length; i++){
-//         nameList += `<li>${salon.pets[i].name}</li>`;
-//     }
-//     getE("names").innerHTML =`
-//     <p>Their names are:</p>
-//     <ul>
-//     ${nameList}
-//     </ul>
-//     `
-// }
-
 // display petCards with all info
 function displayPetCards(){
     getE('pets').innerHTML="";
