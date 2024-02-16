@@ -268,6 +268,7 @@ form{
 }
 .btn-primary{
     background-color: var(--more);
+    color: white;
     margin-top: 3rem;
     font-size: 2.5rem;
     padding: 1rem 3rem;
@@ -436,4 +437,12 @@ td:last-child{
 
 .hidden{
     display: none;
+}
+
+/*services*/
+.service-from .mb-3{
+    width: 100%;
+}
+#services{
+    font-size: 1.6rem;
 }

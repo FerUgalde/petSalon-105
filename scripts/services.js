@@ -1,16 +1,3 @@
-// Js vs jquery
-
-// document.getElementById("services");//js
-// $("#services");//jquery
-
-// document.getElementsByClassName("form-control");
-// $(".form-control");
-
-// document.getElementsByTagName("h2");
-// $("h2");
-
-// //get the value
-// let inputService=$("#selectServices").val();
 var services = [];
 
 //similar to window.onload
@@ -30,12 +17,20 @@ function Service(description,price){
 }
 
 function addService(){
-    let inputService = $("#txtService").val();
-    let inputPrice = $("#txtPrice").val();
-    let newService = new Service(inputService, inputPrice);
-    services.push(newService);
-    saveItems(newService); //from the LS
-    displayItems(services);
+    let inputService = $("#txtService");
+    let inputPrice = $("#txtPrice");
+    let newService = new Service(inputService.val(), inputPrice.val());
+    let listService = [inputService.val(), inputPrice.val()];
+    if(validService(listService)){
+        services.push(newService);
+        saveItems(newService); //from the LS
+        displayItems(services);
+        inputService.val("");
+        inputPrice.val("");
+        showNotifications("Successful adding", "alert-successful");
+    }else{
+        showNotifications("Please fill out all the required fields", "alert-error");
+    }
 }
 
 function displayItems(items){
@@ -47,4 +42,29 @@ function displayItems(items){
         li=`<li>${item.description} - ${item.price}</li>`;
         htmlList.append(li);
     }
+}
+
+function validService(aService){
+    let validation=true;
+    $("input").each(function() {
+        $(this).removeClass("alert-error");
+    });
+    if(aService.some(value => value == "")){
+        validation=false;
+        $("input").each(function() {
+            if($(this).val() == ""){
+                $(this).addClass("alert-error");
+            };
+        });
+    }
+    return validation;
+}
+
+function showNotifications(msg, type){
+    $("#notifications").removeClass("hidden");
+    $("#notifications").html(`<p class="${type}">${msg}</p>`);
+
+    setTimeout(function(){
+        $("#notifications").addClass("hidden");
+    },3000);
 }
