@@ -7,10 +7,11 @@ function petsCount(){
 
 // display petCards with all info
 function displayPetCards(){
+    let petList = readItems("petDB");
     getE('pets').innerHTML="";
     let card="";
-    for(let i=0; i<salon.pets.length; i++){
-        let pet = salon.pets[i];
+    for(let i=0; i<petList.length; i++){
+        let pet = petList[i];
         card +=`
         <div id="${pet.id}" class="petCards">
             <div class="x-delete"><button class="x-delete" onclick="deletePet(${pet.id})">❌</button></div>

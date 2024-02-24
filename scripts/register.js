@@ -79,15 +79,19 @@ function isValid(aPet){
 }
 
 function showNotifications(msg, type){
-    getE("notifications").classList.remove("hidden");
+    //getE("notifications").classList.remove("hidden");
+    $("#notifications").slideDown(1000);
     getE("notifications").innerHTML=`<p class="${type}">${msg}</p>`
-    getE("notifications-copy").classList.remove("hidden");
+    $("#notifications").slideUp(2000);
+    //getE("notifications-copy").classList.remove("hidden");
+    $("#notifications-copy").slideDown(1000);
     getE("notifications-copy").innerHTML=`<p class="${type}">${msg}</p>`
+    $("#notifications-copy").slideUp(2000);
 
-    setTimeout(function(){
-        getE("notifications").classList.add("hidden");
-        getE("notifications-copy").classList.add("hidden");
-    },3000);
+    // setTimeout(function(){
+    //     getE("notifications").classList.add("hidden");
+    //     getE("notifications-copy").classList.add("hidden");
+    // },3000);
 }
 
 function register(){
@@ -98,6 +102,8 @@ function register(){
         let newPet = new Pet(inputName.value, inputAge.value, inputGender.value, inputBreed.value, inputService.value, inputType.value, inputPayment.value, inputDescription.value);
     
         salon.pets.push(newPet);
+
+        saveItems(newPet,"petDB");
     
         petsCount();
         displayPetCards();
@@ -148,6 +154,16 @@ function deletePet(petID){
     displayPetTable();
 }
 
+function getServices(){
+    let servicesList = readItems("services");
+    for(let i = 0; i<servicesList.length; i++){
+        let service = servicesList[i];
+        $("#selectService").append(
+            `<option value="${service.description}">${service.description}</option>`
+        );
+    }
+}
+
 // pets default
 function init(){
     // creating predefined obj
@@ -156,6 +172,7 @@ function init(){
     let pet3 = new Pet("Tweety",80,"Female","Eclectus","Nail trimming","Parrot",undefined,"A red with blue parrot");
     salon.pets.push(pet1, pet2, pet3);
     // executing fn
+    getServices();
     displayPetTable();
     displayPetCards();
     petsCount();

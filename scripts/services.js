@@ -24,7 +24,7 @@ function addService(){
     if(validService(listService)){
         services.push(newService);
         saveItems(newService); //from the LS
-        displayItems(services);
+        displayItems(); //display the services on the HTML
         inputService.val("");
         inputPrice.val("");
         showNotifications("Successful adding", "alert-successful");
@@ -33,7 +33,8 @@ function addService(){
     }
 }
 
-function displayItems(items){
+function displayItems(){
+    let items=readItems(); //getting the items from the LS
     let htmlList=$("#services");
     htmlList.html("");
     let li;
