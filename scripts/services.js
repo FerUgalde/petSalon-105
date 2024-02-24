@@ -23,7 +23,7 @@ function addService(){
     let listService = [inputService.val(), inputPrice.val()];
     if(validService(listService)){
         services.push(newService);
-        saveItems(newService); //from the LS
+        saveItems(newService, "servicesDB"); //from the LS
         displayItems(); //display the services on the HTML
         inputService.val("");
         inputPrice.val("");
@@ -34,15 +34,22 @@ function addService(){
 }
 
 function displayItems(){
-    let items=readItems(); //getting the items from the LS
+    let items=readItems("servicesDB"); //getting the items from the LS
     let htmlList=$("#services");
     htmlList.html("");
     let li;
     for(let i=0; i<items.length; i++){
         let item=items[i];
-        li=`<li>${item.description} - ${item.price}</li>`;
+        li=`<li class="list-group-item d-flex justify-content-between flex-row"><span>Service: ${item.description}  </span>  <span> Price: ${item.price}</span> <button class="btn btn-danger" onclick="deleteService(${i})">Delete Service</button></li>`;
         htmlList.append(li);
     }
+    calulateIncome();
+}
+
+function deleteService(index){
+    deleteItem(index, 'servicesDB');
+    services.splice(index, 1);
+    displayItems();
 }
 
 function validService(aService){
@@ -68,4 +75,17 @@ function showNotifications(msg, type){
     setTimeout(function(){
         $("#notifications").addClass("hidden");
     },3000);
+}
+
+function calulateIncome(){
+    let items=readItems("servicesDB"); 
+    let htmlList=$("#calcIncome");
+    htmlList.html("");
+    let incoming=0;
+
+    for(let i=0; i<items.length; i++){
+        let item=parseFloat(items[i].price);;
+        incoming = incoming+item;
+    }
+    htmlList.html(`$${incoming.toFixed(2)}`);
 }

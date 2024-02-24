@@ -443,6 +443,26 @@ td:last-child{
 .service-from .mb-3{
     width: 100%;
 }
-#services{
-    font-size: 1.6rem;
+#services *{
+    font-size: 2rem;
+}
+
+.list-group-flush{
+    border-radius: 1.5rem;
+}
+
+.services-display{
+    width: 100%;
+}
+
+.text-bg-info{
+    border-radius: 2rem;
+    margin-top: 5rem;
+    width: 70%;
+    padding-top: 2rem !important;
+}
+
+#calcIncome{
+    font-size: 4rem;
+    padding: 2rem;
 }

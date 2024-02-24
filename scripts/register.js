@@ -123,8 +123,13 @@ function register(){
 }
 
 function addInfo(){
-    salon.pets[salon.pets.length - 1].payment = inputPayment.value;
-    salon.pets[salon.pets.length - 1].description = inputDescription.value;
+    indexPet = salon.pets.length-1;
+    payment=salon.pets[indexPet].payment;
+    description=salon.pets[indexPet].description;
+    salon.pets[indexPet].payment = inputPayment.value;
+    salon.pets[indexPet].description = inputDescription.value;
+
+    updateItem(indexPet, "petDB", inputPayment.value, inputDescription.value);
 
     displayPetCards();
     displayPetTable();
@@ -149,13 +154,14 @@ function deletePet(petID){
         }
     }
     getE(petID).remove();
+    deleteItem(deleteIndex, "petDB");
     salon.pets.splice(deleteIndex, 1);
     petsCount();
     displayPetTable();
 }
 
 function getServices(){
-    let servicesList = readItems("services");
+    let servicesList = readItems("servicesDB");
     for(let i = 0; i<servicesList.length; i++){
         let service = servicesList[i];
         $("#selectService").append(
@@ -171,6 +177,11 @@ function init(){
     let pet2 = new Pet("Scrappy",50,"Male","Doberman","Bath and drying","Dog");
     let pet3 = new Pet("Tweety",80,"Female","Eclectus","Nail trimming","Parrot",undefined,"A red with blue parrot");
     salon.pets.push(pet1, pet2, pet3);
+
+    saveItems(pet1,"petDB");
+    saveItems(pet2,"petDB");
+    saveItems(pet3,"petDB");
+
     // executing fn
     getServices();
     displayPetTable();
